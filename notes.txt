@@ -2,15 +2,15 @@
 python -m pip --version
 
 
-# install venv
+# install venv (virtual environment)
 python -m pip install virtualenv
 
 
-# created a virtual env
+# create a virtual env
 python -m venv venv
 
 
-# activate virtual env
+# activate virtual environment
 
 mac:
     source venv/bin/activate
@@ -22,3 +22,11 @@ win:
 
 # install flask
 python -m pip install flask
+
+# deactivate after project
+deactivate
+
+
+to run server type:
+python3 "name.py" (whatever the name of the python file)
+py "name.py" (whatever the name of the python file)
