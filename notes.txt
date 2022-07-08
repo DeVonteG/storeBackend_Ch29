@@ -33,6 +33,28 @@ py "name.py" (whatever the name of the python file)
 
 ---------------------------------------------------------------------------------------------------
 
-git.init === initialize project
-git.commit === commit the project(save changes)
-git.push === push the project
+######################################
+########## GIT COMMANDS ##############
+######################################
+
+
+# start project
+git init
+
+
+# set the remote url
+git remote add origin <url>
+
+
+
+# local copy
+git add .
+git commit -m "ANY MESSAGE"
+
+
+# upload to github   (every new project)
+# first time:
+git push -u origin master/main
+
+# next time
+git push
