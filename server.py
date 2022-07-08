@@ -1,4 +1,5 @@
 import json
+from unittest import mock
 from flask import Flask
 from about import me
 from data import mock_data
@@ -49,6 +50,57 @@ def get_product_by_id(id):
             return json.dumps(prod)
         
     return "NOT FOUND"
+
+    
+
+# get api/products_category/<category>
+# return all the products whose category is 
+
+@app.get("/api/products_category/<category>")
+def get_prod_by_category(category):
+    print("your category", category)
+    results=[]
+    for prod in mock_data:
+        if prod["category"].lower()==category.lower():
+            results.append(prod)
+       
+    return json.dumps(results)
+   
+
+
+# search for cheapest product by price with end page
+
+
+@app.get("/api/product_cheapest")
+def get_cheap_prices():
+
+    solution=mock_data[0]
+    for prod in mock_data:
+        if prod["price"] < solution["price"]:
+            solution=prod 
+
+    return json.dumps(solution)
+
+## get /api/categories
+    ## - return ok
+    ##- travel mock data and print category of every product
+    # -  put the category in a list and at the end of for loop, return the list as json
+@app.get("/api/categories")
+def get_category():
+    
+    prods=[]
+    for category in mock_data:
+        cat = category["category"]
+        if not cat in prods:
+            prods.append(cat)
+    
+    return json.dumps(prods)
+    # print (category["category"])
+
+    # return "OK"  
+
+
+
 
 app.run(debug=True)
 
