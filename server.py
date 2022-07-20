@@ -1,8 +1,9 @@
-import json
-from unittest import mock
-from flask import Flask
+from flask import Flask, request
 from about import me
 from data import mock_data
+import json
+import random
+
 
 app = Flask("server")
 
@@ -40,6 +41,27 @@ def about_json():
 @app.get("/api/products")
 def data_json():
     return json.dumps(mock_data) 
+
+
+# @app.post("/api/products")
+# def save_product():
+#     data=request.get_json()
+#     print(data)
+
+#     return "POST OK"
+
+@app.post("/api/products") 
+def save_product(): 
+    product=request.get_json()
+    mock_data.append(product)
+    
+    product ["id"]= random.randrange(0, 1234)
+
+    return json.dumps(product)
+
+
+
+# ################
 
 
 @app.get("/api/products/<id>")
@@ -98,7 +120,24 @@ def get_category():
     # print (category["category"])
 
     # return "OK"  
+@app.get("/api/count_products")
+def get_prod_count():
 
+    count=len(mock_data)
+    
+    
+    return json.dumps({"count":count})
+
+
+@app.get("/api/search/<text>")
+def search_products(text):
+    results=[]
+    text = text.lower()
+    for product in mock_data:
+        if text in product["title"].lower():
+            results.append(product)
+
+    return json.dumps(results)
 
 
 
