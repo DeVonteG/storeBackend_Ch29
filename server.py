@@ -5,8 +5,10 @@ from data import mock_data
 import random
 import json
 from config import db
+from flask_cors import CORS
 
 app = Flask("server")
+CORS(app) # allow requests from any origin
 
 @app.get("/")
 def home():
@@ -167,6 +169,15 @@ def search_products(text):
             results.append(product)
 
     return json.dumps(results)
+
+
+################################################################
+################## API  Endpoints= Coupons ####################
+################################################################
+
+
+# @app.get("/api/coupons")
+# def search_coupons():
 
 
 
